@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Solution {
+    public static int romanToInt(String s) {
+        int num=0;
+        HashMap<Character, Integer> Num = new HashMap<>();
+        Num.put('I',1);
+        Num.put('V',5);
+        Num.put('X',10);
+        Num.put('L',50);
+        Num.put('C',100);
+        Num.put('D',500);
+        Num.put('M',1000);
+        for(int i=0;i<(s.length()-1);i++) //Running the loop till the second last character only because i+1 will point to the position after the last character,
+        if i points to the last character
+        {
+            if(Num.get(s.charAt(i))>=Num.get(s.charAt(i+1)))
+                num=num + Num.get(s.charAt(i));
+            else
+                num=num - Num.get(s.charAt(i));
+            }
+        return (num+Num.get(s.charAt(s.length()-1))); //Adding the last character in the end because the loop only ran till the second last character 
+    }
+    
+    public static void main(String args[])
+    {
+        Scanner s=new Scanner(System.in);
+        String str=s.nextLine();
+        romanToInt(str);
+    }
+}
